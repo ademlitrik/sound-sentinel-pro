@@ -1,0 +1,27 @@
+{
+  "name": "sound-sentinel",
+  "version": "1.0.0",
+  "description": "AI-Powered Real-time Household Sound Tracking Desktop Application",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --enable-logging",
+    "test": "node scripts/test_app.js"
+  },
+  "keywords": [
+    "sound-tracker",
+    "acoustic-monitoring",
+    "ai",
+    "yamnet",
+    "electron",
+    "smart-home"
+  ],
+  "author": "Antigravity",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^44.5.1"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs": "^4.22.0"
+  }
+}

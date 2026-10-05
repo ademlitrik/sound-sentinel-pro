@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sound Sentinel - Home Acoustic AI Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- TensorFlow.js Library -->
+  <script src="../../node_modules/@tensorflow/tfjs/dist/tf.min.js"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Top Header Bar -->
+    <header class="top-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 64 64" width="32" height="32">
+            <defs>
+              <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#38bdf8"/>
+                <stop offset="100%" stop-color="#818cf8"/>
+              </linearGradient>
+            </defs>
+            <circle cx="32" cy="32" r="28" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+            <path d="M22 32 L26 22 L30 42 L34 16 L38 46 L42 28 L46 32" fill="none" stroke="url(#logo-grad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <h1>Sound Sentinel</h1>
+          <span class="brand-subtitle">AI House Sound Tracker & Acoustic Monitor</span>
+        </div>
+      </div>
+
+      <div class="status-container">
+        <div id="status-badge" class="status-badge ready">
+          <span class="status-dot"></span>
+          <span id="status-text">Initializing AI Model...</span>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="mic-select-wrap">
+          <span class="mic-icon">🎙️</span>
+          <select id="mic-select" class="dropdown" title="Select audio input device">
+            <option value="">Default Microphone</option>
+          </select>
+        </div>
+
+        <button id="btn-toggle-listen" class="btn btn-primary btn-pulse">
+          <span id="toggle-btn-icon">▶️</span>
+          <span id="toggle-btn-text">Start Monitoring</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace Grid -->
+    <main class="main-content">
+      <!-- Left Column: Live Audio, AI Detection & Test Lab -->
+      <section class="column left-col">
+        <!-- Live AI Spotlight Card -->
+        <div class="card spotlight-card">
+          <div class="card-header">
+            <h2>Real-Time Sound Recognition</h2>
+            <span class="card-tag">YAMNet 521 Classes</span>
+          </div>
+
+          <div class="spotlight-body">
+            <div id="top-class-emoji" class="spotlight-emoji">🔊</div>
+            <div class="spotlight-details">
+              <div class="spotlight-top-line">
+                <span id="top-class-name" class="spotlight-name">Listening for sounds...</span>
+                <span id="top-class-category" class="badge badge-info">Ambient</span>
+              </div>
+              <div class="confidence-container">
+                <div class="conf-info">
+                  <span>Confidence</span>
+                  <span id="top-class-confidence">0%</span>
+                </div>
+                <div class="conf-track">
+                  <div id="top-class-conf-bar" class="conf-fill" style="width: 0%;"></div>
+                </div>
+              </div>
+              <div class="spotlight-meta">
+                <span id="top-class-time">--:--:--</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Probabilities Breakdown -->
+          <div class="probabilities-section">
+            <h3>Top Class Probabilities</h3>
+            <div id="probabilities-list" class="probabilities-list">
+              <div class="prob-empty">Awaiting audio input...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real-Time Audio Visualizer Card -->
+        <div class="card visualizer-card">
+          <div class="card-header">
+            <h2>Live Acoustic Visualizer</h2>
+            <div class="visualizer-modes">
+              <button id="mode-waveform" class="mode-btn active">Oscilloscope</button>
+              <button id="mode-spectrum" class="mode-btn">Spectrum (FFT)</button>
+            </div>
+          </div>
+
+          <div class="canvas-wrap">
+            <canvas id="visualizer-canvas"></canvas>
+          </div>
+
+          <!-- Decibel Meter -->
+          <div class="level-meter-container">
+            <div class="level-meter-label">
+              <span>Input Level</span>
+              <span id="level-meter-db">-∞ dB</span>
+            </div>
+            <div class="level-meter-track">
+              <div id="level-meter-fill" class="level-meter-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sound Simulation & Acoustic Test Lab -->
+        <div class="card test-lab-card">
+          <div class="card-header">
+            <h2>🧪 Acoustic Simulator & Test Lab</h2>
+            <span class="card-tag">Instant Verification</span>
+          </div>
+          <p class="test-desc">Generate calibrated acoustic profiles to test alert triggers immediately:</p>
+          <div class="test-buttons-grid">
+            <button id="btn-test-alarm" class="test-btn alarm">
+              <span class="test-emoji">🚨</span>
+              <span>Smoke Alarm</span>
+            </button>
+            <button id="btn-test-glass" class="test-btn glass">
+              <span class="test-emoji">💥</span>
+              <span>Glass Break</span>
+            </button>
+            <button id="btn-test-baby" class="test-btn baby">
+              <span class="test-emoji">👶</span>
+              <span>Baby Cry</span>
+            </button>
+            <button id="btn-test-knock" class="test-btn knock">
+              <span class="test-emoji">🚪</span>
+              <span>Door Knock</span>
+            </button>
+            <button id="btn-test-bark" class="test-btn bark">
+              <span class="test-emoji">🐕</span>
+              <span>Dog Bark</span>
+            </button>
+          </div>
+
+          <!-- Dropzone for testing audio files -->
+          <div id="file-dropzone" class="file-dropzone">
+            <input type="file" id="file-input" accept="audio/*" style="display: none;">
+            <span class="dropzone-icon">📁</span>
+            <div class="dropzone-text">
+              <strong>Drop audio file here</strong> or click to browse
+            </div>
+            <span class="dropzone-sub">Supports .wav, .mp3, .ogg, .m4a</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Event Timeline, Filters & Settings -->
+      <section class="column right-col">
+        <!-- Stats Summary Bar -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <span class="stat-num" id="stat-total-events">0</span>
+            <span class="stat-lbl">Events Tracked</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" id="stat-uptime">00:00:00</span>
+            <span class="stat-lbl">Active Uptime</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" id="stat-top-category">None</span>
+            <span class="stat-lbl">Top Category</span>
+          </div>
+        </div>
+
+        <!-- Detection Settings & Category Toggles -->
+        <div class="card settings-card">
+          <div class="card-header">
+            <h2>Tracking Filters & Sensitivity</h2>
+          </div>
+
+          <div class="settings-body">
+            <!-- Confidence Slider -->
+            <div class="setting-item">
+              <div class="setting-label-row">
+                <span>Confidence Threshold</span>
+                <span id="sensitivity-val" class="slider-badge">35%</span>
+              </div>
+              <input type="range" id="sensitivity-slider" min="20" max="85" value="35" class="slider">
+              <span class="setting-hint">Higher values reduce false triggers; lower values detect fainter sounds.</span>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="setting-item">
+              <div class="setting-label-row">
+                <span>Active Sound Categories</span>
+              </div>
+              <div id="category-filters" class="category-chips">
+                <!-- Dynamically generated chips -->
+              </div>
+            </div>
+
+            <!-- Notification Toggles -->
+            <div class="setting-toggles-row">
+              <label class="toggle-control">
+                <input type="checkbox" id="toggle-notifs" checked>
+                <span class="toggle-track"></span>
+                <span>Desktop Toast Notifications</span>
+              </label>
+              <label class="toggle-control">
+                <input type="checkbox" id="toggle-chime" checked>
+                <span class="toggle-track"></span>
+                <span>Audio Alert Chime</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event Log Timeline Card -->
+        <div class="card timeline-card">
+          <div class="card-header">
+            <div class="timeline-title-row">
+              <h2>Detected Sound Timeline</h2>
+            </div>
+            <div class="timeline-actions">
+              <button id="btn-export-csv" class="btn btn-sm btn-outline" title="Export CSV file">Export CSV</button>
+              <button id="btn-export-json" class="btn btn-sm btn-outline" title="Export JSON file">JSON</button>
+              <button id="btn-clear-history" class="btn btn-sm btn-ghost" title="Clear log">Clear</button>
+            </div>
+          </div>
+
+          <div id="event-list" class="event-list">
+            <div id="empty-log-placeholder" class="empty-log">
+              <div class="empty-icon">🎧</div>
+              <p>No sound events detected yet.</p>
+              <span class="empty-hint">Start monitoring or use the Acoustic Simulator on the left to test.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- App Scripts -->
+  <script src="audio-engine.js"></script>
+  <script src="audio-synth.js"></script>
+  <script src="visualizer.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
