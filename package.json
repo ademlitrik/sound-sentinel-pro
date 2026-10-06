@@ -1,8 +1,9 @@
 {
   "name": "sound-sentinel",
   "version": "1.0.0",
-  "description": "AI-Powered Real-time Household Sound Tracking Desktop Application",
+  "description": "Advanced Acoustic Security & Scientific Sound Telemetry System developed by Tanyaradzwa Bvute at Afro Vision Media.",
   "main": "src/main.js",
+  "author": "Tanyaradzwa Bvute <Afro Vision Media>",
   "scripts": {
     "start": "electron .",
     "dev": "electron . --enable-logging",
@@ -12,18 +13,19 @@
     "dist:all": "electron-builder --win"
   },
   "keywords": [
-    "sound-tracker",
-    "acoustic-monitoring",
+    "acoustic-security",
+    "sound-telemetry",
+    "scientific-audio-monitoring",
     "ai",
     "yamnet",
-    "electron",
-    "smart-home"
+    "afro-vision-media",
+    "tanyaradzwa-bvute",
+    "electron"
   ],
-  "author": "Antigravity",
-  "license": "ISC",
   "build": {
-    "appId": "com.soundsentinel.app",
-    "productName": "Sound Sentinel",
+    "appId": "com.afrovisionmedia.soundsentinel",
+    "productName": "Sound Sentinel Pro",
+    "copyright": "Copyright © 2026 Tanyaradzwa Bvute, Afro Vision Media. All rights reserved.",
     "directories": {
       "output": "dist"
     },
@@ -45,7 +47,8 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Sound Sentinel"
+      "shortcutName": "Sound Sentinel Pro",
+      "artifactName": "Sound-Sentinel-Pro-Setup-${version}.${ext}"
     }
   },
   "devDependencies": {

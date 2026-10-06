@@ -13,19 +13,19 @@ function createWindow() {
   const icon = fs.existsSync(iconPath) ? nativeImage.createFromPath(iconPath) : null;
 
   mainWindow = new BrowserWindow({
-    width: 1240,
-    height: 840,
-    minWidth: 980,
-    minHeight: 680,
-    title: 'Sound Sentinel - Home Acoustic AI Tracker',
+    width: 1260,
+    height: 850,
+    minWidth: 1000,
+    minHeight: 700,
+    title: 'Sound Sentinel Pro - Acoustic Security & Scientific Intelligence | Afro Vision Media',
     icon: icon,
-    backgroundColor: '#090d16',
+    backgroundColor: '#06090f',
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false,
-      backgroundThrottling: false // keep audio processing active even when minimized!
+      backgroundThrottling: false // Keep neural DSP audio processing active when minimized
     }
   });
 
@@ -37,8 +37,8 @@ function createWindow() {
       mainWindow.hide();
       if (Notification.isSupported()) {
         new Notification({
-          title: 'Sound Sentinel Running in Background',
-          body: 'Sound Sentinel is still monitoring house sounds in your system tray.',
+          title: 'Sound Sentinel Pro Running in Background',
+          body: 'Acoustic surveillance and scientific monitoring remain active in your system tray.',
           icon: iconPath
         }).show();
       }
@@ -55,11 +55,11 @@ function createTray() {
   if (!icon) return;
 
   tray = new Tray(icon);
-  tray.setToolTip('Sound Sentinel - AI House Sound Tracker (Monitoring)');
+  tray.setToolTip('Sound Sentinel Pro - Afro Vision Media (Tanyaradzwa Bvute)');
 
   const contextMenu = Menu.buildFromTemplate([
     {
-      label: 'Open Sound Sentinel',
+      label: 'Open Sound Sentinel Console',
       click: () => {
         if (mainWindow) {
           mainWindow.show();
@@ -69,7 +69,7 @@ function createTray() {
     },
     { type: 'separator' },
     {
-      label: 'Pause / Resume Monitoring',
+      label: 'Arm / Disarm Acoustic Sensor',
       click: () => {
         if (mainWindow) {
           mainWindow.webContents.send('tray-action', 'toggle-monitoring');
@@ -77,7 +77,7 @@ function createTray() {
       }
     },
     {
-      label: 'Clear Detection History',
+      label: 'Flush Incident History',
       click: () => {
         if (mainWindow) {
           mainWindow.webContents.send('tray-action', 'clear-history');
@@ -85,6 +85,10 @@ function createTray() {
       }
     },
     { type: 'separator' },
+    {
+      label: 'System Info: Tanyaradzwa Bvute (Afro Vision Media)',
+      enabled: false
+    },
     {
       label: 'Quit Sound Sentinel',
       click: () => {
@@ -144,8 +148,8 @@ ipcMain.handle('load-classes', async () => {
 ipcMain.handle('show-notification', async (_event, options) => {
   if (!Notification.isSupported()) return false;
   const notif = new Notification({
-    title: options.title || 'Sound Alert',
-    body: options.body || 'Sound event detected',
+    title: options.title || '[SECURITY ALERT] Acoustic Anomaly Detected',
+    body: options.body || 'Sound event classified above threshold',
     icon: iconPath,
     urgency: options.urgency || 'normal'
   });
@@ -172,10 +176,10 @@ ipcMain.handle('export-events', async (_event, { data, format = 'csv' }) => {
   const ext = format === 'json' ? 'json' : 'csv';
 
   const { canceled, filePath } = await dialog.showSaveDialog(mainWindow, {
-    title: 'Export Sound Detection Events',
-    defaultPath: `sound-sentinel-log-${dateStr}.${ext}`,
+    title: 'Export Acoustic Security Telemetry Log',
+    defaultPath: `Sound-Sentinel-Telemetry-${dateStr}.${ext}`,
     filters: [
-      { name: format === 'json' ? 'JSON File' : 'CSV File', extensions: [ext] }
+      { name: format === 'json' ? 'JSON Telemetry File' : 'CSV Report File', extensions: [ext] }
     ]
   });
 

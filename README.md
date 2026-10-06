@@ -1,93 +1,83 @@
-# Sound Sentinel 🎧
+# Sound Sentinel Pro 🛡️🔬
 
-> **AI-Powered Real-time Household Sound Tracking & Acoustic Monitoring Desktop Application**
+> **Enterprise Acoustic Security & Scientific Sound Telemetry Suite**  
+> **Developed by Tanyaradzwa Bvute | Afro Vision Media**
 
-Sound Sentinel is a desktop application built with **Electron** and **TensorFlow.js (YAMNet)** designed to continuously track, classify, and visualize domestic and environmental acoustic events in your home.
-
----
-
-## ✨ Key Features
-
-- **🧠 Deep Learning Acoustic Recognition (YAMNet)**
-  - Classifies **521 distinct acoustic classes** locally with zero cloud latency.
-  - Recognizes alarms (smoke alarms, fire sirens), glass breaking, baby crying, dog barking, knocking, doorbells, footsteps, speech, appliances, and more.
-  - Pre-trained neural weights bundled locally (`model/`) for 100% offline operation.
-
-- **📊 Real-time Dual-Mode Visualizer**
-  - **Oscilloscope Waveform**: Live analog waveform display with neon glow accents.
-  - **Frequency Spectrum (FFT)**: 48-band logarithmic frequency spectrum with peak hold indicators.
-  - **Decibel VU Meter**: Real-time dBFS volume meter (-60 dB to 0 dB) with noise gate filtering.
-
-- **🔔 Native Desktop & System Tray Integration**
-  - Runs unobtrusively in the background via the Windows System Tray.
-  - Native toast alerts for high-priority events (e.g. 🚨 Smoke Alarm, 👶 Baby Cry, 💥 Glass Shatter).
-  - Configurable alert debouncing/cooldown to prevent notification spamming.
-
-- **🧪 Acoustic Simulator & Test Lab**
-  - Synthesize calibrated acoustic profiles directly in the app (Smoke Alarm, Glass Break, Baby Cry, Door Knock, Dog Bark) to test alerts without making noise.
-  - Drag-and-drop audio file testing (`.wav`, `.mp3`, `.ogg`, `.m4a`).
-
-- **📁 Data Logging & Export**
-  - Interactive chronological event timeline with confidence ratings and timestamps.
-  - One-click export to **CSV** or **JSON** for home automation or historical analysis.
-  - Category filtering: choose which sound types to monitor or mute.
+Sound Sentinel Pro is a high-precision acoustic intelligence desktop platform engineered for **domestic and facility security surveillance** and **environmental sound telemetry**. It detects, classifies, and logs acoustic anomalies in real time with zero cloud dependency.
 
 ---
 
-## 🚀 Quick Start
+## 👨‍💻 System Architect & Developer
 
-### 1. Launch the Application
-Open your terminal in this directory and run:
+- **Lead Developer**: **Tanyaradzwa Bvute**
+- **Company / Organization**: **Afro Vision Media**
+- **Specialization**: Full-stack development, business systems, AI-assisted development, databases, APIs, and digital platforms.
+- **System Objective**: Built specifically for **Security Surveillance & Scientific Acoustic Research** — non-invasive acoustic pattern tracking, immediate perimeter anomaly alerts (glass fracture, forced entry, distress vocalization, fire/smoke hazard), and domestic audio telemetry without transmitting audio data to external servers (100% privacy-compliant edge processing).
+
+---
+
+## ✨ Enterprise Features
+
+- **🧠 Edge Neural DSP Engine (YAMNet)**
+  - Classifies **521 acoustic categories** directly on-device using local weights.
+  - Zero cloud latency, completely offline, zero audio transmission to external servers.
+  - Instant classification for:
+    - 🚨 **Emergency & Safety**: Smoke detector alarms, fire sirens, glass fracture, screams, burglar alarms
+    - 👶 **Baby & Care**: Infant crying, distress wails, babbling, child speech
+    - 🚪 **Security & Perimeter**: Door knocking, doorbells, sliding doors, footsteps, creaks, slamming
+    - 🐾 **Pets & Animals**: Canine barking, howling, feline meowing, purring, birds
+    - 🍳 **Domestic & Kitchen**: Microwave, blender, running water/faucet, dishes, cutlery, toilet flush
+    - 🗣️ **People & Voice**: Speech, laughter, sneezing, coughing, snoring, whispers
+    - 🔨 **Tools & Impacts**: Hammers, drilling, thuds, metallic clatter
+
+- **📐 Precision Vector Iconography**
+  - Clean, modern, scientific SVG iconography replaces informal emojis for an enterprise-grade telemetry dashboard.
+
+- **📊 Dual-Mode Real-Time Spectral Visualizer**
+  - **Signal Oscilloscope**: High-FPS continuous analog waveform rendering with neon accents.
+  - **FFT Spectrum Analyzer**: 48-band logarithmic frequency spectrum with peak hold indicators.
+  - **Decibel VU Meter**: Real-time dBFS volume gauge (-60 dBFS to 0 dBFS) with ambient baseline noise gate filtering.
+
+- **🔔 Windows Security Alerts & Tray Monitoring**
+  - Background surveillance mode via Windows System Tray.
+  - Native toast alerts with urgency prioritization (Critical, High, Medium).
+  - Smart alert debouncing and cooldown algorithms to avoid alert spamming.
+
+- **🧪 Acoustic Calibration & Diagnostics Lab**
+  - Synthetic harmonic generators (ISO T3 smoke alarms, resonant glass fractures, infant cry FM modulations, percussive knocks, canine barks) for immediate diagnostic verification.
+  - Raw audio file ingestion (`.wav`, `.mp3`, `.ogg`, `.m4a`).
+
+- **📁 Security Telemetry Audit Logging**
+  - Searchable, chronological incident log with event IDs and confidence ratings.
+  - Export to **CSV Reports** or structured **JSON Telemetry** for security audits.
+
+---
+
+## 📦 Windows Installation Package
+
+The standalone production Windows installer executable is located in:
+
+```
+dist/Sound-Sentinel-Pro-Setup-1.0.0.exe
+```
+
+### Installation Steps:
+1. Double-click `Sound-Sentinel-Pro-Setup-1.0.0.exe`.
+2. Choose your destination directory (defaults to `Program Files`).
+3. The wizard automatically generates a **Desktop Shortcut** and **Start Menu** entry under `Afro Vision Media`.
+4. Launch **Sound Sentinel Pro** from your desktop or Start Menu.
+
+---
+
+## 🚀 Running in Development Mode
 
 ```bash
+# Launch application in Electron
 npm start
-```
 
-### 2. Start Monitoring
-1. Choose your microphone from the top dropdown.
-2. Click **Start Monitoring**.
-3. Adjust the **Confidence Threshold** slider (default is 35%) and toggle categories according to your needs.
-
-### 3. Test Without Hardware Sounds
-Click any of the buttons in the **Acoustic Simulator & Test Lab** (e.g. *Smoke Alarm* or *Baby Cry*) to verify notifications, visualizer, and event logging.
-
----
-
-## 🛠 Project Structure
-
-```
-adem/
-├── model/                     # Local YAMNet weights & class map (521 classes)
-│   ├── model.json
-│   ├── group1-shard[1..4].bin
-│   ├── yamnet_class_map.csv
-│   └── classes.json
-├── src/
-│   ├── main.js                # Electron main process (tray, IPC, notifications)
-│   ├── preload.js             # ContextBridge IPC security layer
-│   ├── assets/                # App icons & audio alert chime
-│   │   ├── icon.png
-│   │   ├── icon.svg
-│   │   └── chime.wav
-│   └── renderer/              # Frontend UI & audio pipeline
-│       ├── index.html         # Main dashboard layout
-│       ├── styles.css         # Modern dark glassmorphism styling
-│       ├── audio-engine.js    # Mic capture, 16kHz resampling, sliding window
-│       ├── audio-synth.js     # Web Audio API acoustic simulator
-│       ├── visualizer.js      # High-performance canvas waveform/FFT engine
-│       └── app.js             # Central controller & AI inference loop
-├── scripts/
-│   ├── test_app.js            # Self-test validation script
-│   └── test_electron_launch.js# Window launch validator
-└── package.json
-```
-
----
-
-## 🧪 Running Self-Tests
-
-To run the automated validation suite (file verification, class maps, model loading, 16kHz resampler check):
-
-```bash
+# Run verification test suite
 npm test
+
+# Rebuild Windows Installer (.exe)
+npm run dist
 ```

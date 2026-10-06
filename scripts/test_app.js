@@ -15,6 +15,7 @@ async function runTests() {
     'src/renderer/app.js',
     'src/renderer/audio-engine.js',
     'src/renderer/audio-synth.js',
+    'src/renderer/icons.js',
     'src/renderer/visualizer.js',
     'src/assets/icon.png',
     'src/assets/icon.svg',
