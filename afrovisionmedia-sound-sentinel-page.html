@@ -1,12 +1,11 @@
 <!-- ==========================================================================
      SOUND SENTINEL PRO - EMBEDDABLE LANDING PAGE FOR AFROVISIONMEDIA.CO.ZA
-     Accurately styled to match Afro Vision Media's design language, fonts & colors:
-     - Fonts: "Rubik" for Headings & "Jost" for Body / Subheadings
-     - Colors: Afro Vision Warm Amber-to-Crimson Gradient (#e88504 -> #dc4e19 -> #8c1717)
-     - Style: Clean light aesthetic, rounded cards, black quote accent card & white pill buttons
+     Live direct download links verified on www.afrovisionmedia.co.za/Downloads/
+     - Windows Installer: https://www.afrovisionmedia.co.za/Downloads/Sound-Sentinel-Pro-Setup-1.0.0.exe
+     - Standalone Zip:    https://www.afrovisionmedia.co.za/Downloads/Sound-Sentinel-Pro-v1.0.0-Portable.zip
 ========================================================================== -->
 
-<!-- Google Fonts Import: Rubik & Jost (Matching afrovisionmedia.co.za) -->
+<!-- Google Fonts: Rubik & Jost (Matching afrovisionmedia.co.za) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -20,21 +19,19 @@
       --av-red: #dc4e19;
       --av-burgundy: #8c1717;
       --av-gradient: linear-gradient(115deg, #e88504 0%, #dc4e19 50%, #8c1717 100%);
-      --av-gradient-hover: linear-gradient(115deg, #f29012 0%, #e65824 50%, #9c1d1d 100%);
       --av-dark: #111827;
       --av-slate: #1e293b;
       --av-body: #475569;
       --av-muted: #64748b;
       --av-light-bg: #f8fafc;
       --av-card-border: #e2e8f0;
-      --av-green: #10b981;
       
       font-family: "Jost", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       color: var(--av-body);
       line-height: 1.6;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 20px 16px 80px;
+      padding: 10px 16px 80px;
       box-sizing: border-box;
       -webkit-font-smoothing: antialiased;
     }
@@ -53,7 +50,6 @@
       letter-spacing: -0.015em;
     }
 
-    /* Subheader banner title matching Afro Vision Media "Service Hub" header */
     .av-page-tagline {
       text-align: center;
       font-family: "Jost", sans-serif;
@@ -64,14 +60,13 @@
       letter-spacing: -0.01em;
     }
 
-    /* Main Hero Banner Card - EXACT match to afrovisionmedia.co.za Service Hub Card */
     .av-hero-card {
       background: var(--av-gradient);
       border-radius: 20px;
       padding: clamp(32px, 5vw, 54px);
       color: #ffffff;
       box-shadow: 0 16px 40px rgba(220, 78, 25, 0.22);
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       position: relative;
       overflow: hidden;
     }
@@ -123,7 +118,6 @@
       align-items: center;
     }
 
-    /* Buttons */
     .av-btn {
       display: inline-flex;
       align-items: center;
@@ -139,7 +133,6 @@
       cursor: pointer;
     }
 
-    /* White Button inside Hero Card - Matching "Browse Services" */
     .av-btn-hero-white {
       background: #ffffff;
       color: var(--av-burgundy) !important;
@@ -165,7 +158,6 @@
       transform: translateY(-2px);
     }
 
-    /* Sub-nav badge row - Matching "Service Catalog / My Cart / My Requests" */
     .av-pill-row {
       display: flex;
       flex-wrap: wrap;
@@ -193,7 +185,6 @@
       border-color: #a7f3d0;
     }
 
-    /* Two-Column Intro Section - EXACT match to Screenshot 2 */
     .av-split-intro {
       display: grid;
       grid-template-columns: 1.4fr 1fr;
@@ -240,14 +231,12 @@
       line-height: 1.7;
     }
 
-    /* Black Quote Card matching screenshot 2 */
     .av-quote-card {
       background: #0f141e;
       border-radius: 16px;
       padding: 34px 30px;
       color: #ffffff;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-      position: relative;
     }
 
     .av-quote-text {
@@ -265,7 +254,6 @@
       color: var(--av-amber);
     }
 
-    /* Acoustic Live Telemetry Preview in Light Modern Card */
     .av-telemetry-container {
       background: #ffffff;
       border: 1px solid var(--av-card-border);
@@ -357,7 +345,6 @@
     .av-event-card.warn { border-left: 4px solid var(--av-orange); }
     .av-event-card.info { border-left: 4px solid #0284c7; }
 
-    /* The 7 Advantages Grid */
     .av-section-head {
       text-align: center;
       max-width: 780px;
@@ -383,7 +370,6 @@
       padding: 30px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
       transition: all 0.25s ease;
-      position: relative;
     }
 
     .av-adv-box:hover {
@@ -418,7 +404,6 @@
       margin: 0;
     }
 
-    /* Comparison Table */
     .av-table-box {
       background: #ffffff;
       border: 1px solid var(--av-card-border);
@@ -458,17 +443,9 @@
       color: var(--av-dark);
     }
 
-    .av-tag-check {
-      color: #059669;
-      font-weight: 700;
-    }
+    .av-tag-check { color: #059669; font-weight: 700; }
+    .av-tag-cross { color: #dc2626; font-weight: 600; }
 
-    .av-tag-cross {
-      color: #dc2626;
-      font-weight: 600;
-    }
-
-    /* Developer Attribution Banner */
     .av-developer-card {
       background: #ffffff;
       border: 2px solid #fed7aa;
@@ -514,7 +491,6 @@
       margin-bottom: 10px;
     }
 
-    /* Bottom Call-to-Action */
     .av-bottom-cta {
       background: var(--av-gradient);
       border-radius: 20px;
@@ -538,10 +514,9 @@
     }
   </style>
 
-  <!-- Tagline header matching afrovisionmedia.co.za subheaders -->
   <div class="av-page-tagline">Sound Sentinel Pro</div>
 
-  <!-- Hero Card (Exact styling of Afro Vision Media Service Hub Card) -->
+  <!-- Hero Banner matching Service Hub Card -->
   <div class="av-hero-card">
     <span class="av-hero-tag">Acoustic AI Telemetry • 100% Free Software</span>
     <h1 class="av-hero-title">Sound Sentinel Pro</h1>
@@ -552,19 +527,19 @@
     </p>
 
     <div class="av-hero-actions">
-      <!-- UPDATE HREF TO YOUR DOWNLOAD LINK (e.g., WordPress upload or GitHub Release) -->
-      <a href="Sound-Sentinel-Pro-Setup-1.0.0.exe" class="av-btn av-btn-hero-white" download>
+      <!-- LIVE DIRECT DOWNLOAD LINKS ON AFROVISIONMEDIA.CO.ZA -->
+      <a href="https://www.afrovisionmedia.co.za/Downloads/Sound-Sentinel-Pro-Setup-1.0.0.exe" class="av-btn av-btn-hero-white" download>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Windows Installer (.exe)
       </a>
-      <a href="Sound-Sentinel-Pro-v1.0.0-Portable.zip" class="av-btn av-btn-hero-outline" download>
+      <a href="https://www.afrovisionmedia.co.za/Downloads/Sound-Sentinel-Pro-v1.0.0-Portable.zip" class="av-btn av-btn-hero-outline" download>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
         Download Portable (.zip)
       </a>
     </div>
   </div>
 
-  <!-- Pill Row Matching Afro Vision Media Catalog/Cart/Requests Row -->
+  <!-- Sub-Nav Pill Row -->
   <div class="av-pill-row">
     <div class="av-pill-item av-pill-free">
       <span>✓</span> 100% Free Forever
@@ -583,7 +558,7 @@
     </div>
   </div>
 
-  <!-- Two Column Intro Section matching Afro Vision Media "We provide strategic Branding..." -->
+  <!-- Intro with Black Quote Card -->
   <div class="av-split-intro">
     <div>
       <div class="av-eyebrow">Afro Vision Media Software</div>
@@ -593,7 +568,6 @@
       </p>
     </div>
 
-    <!-- Black Quote Card matching Afro Vision Media Design -->
     <div class="av-quote-card">
       <div class="av-quote-text">
         "Security and privacy should never be a trade-off. We build intelligent tools that protect homes and organizations with zero data leaving the device."
@@ -602,7 +576,7 @@
     </div>
   </div>
 
-  <!-- Live Acoustic Telemetry Preview Box -->
+  <!-- Live Telemetry Card -->
   <div class="av-telemetry-container">
     <div class="av-telemetry-header">
       <div class="av-telemetry-title">
@@ -666,7 +640,7 @@
     </div>
   </div>
 
-  <!-- The 7 Advantages Section -->
+  <!-- Advantages -->
   <div class="av-section-head">
     <div class="av-eyebrow" style="justify-content:center;">Key Value Proposition</div>
     <h2 class="av-section-title">The 7 Unmatched Advantages</h2>
@@ -717,7 +691,7 @@
     </div>
   </div>
 
-  <!-- Comparison Matrix Table -->
+  <!-- Comparison Table -->
   <div class="av-section-head">
     <h2 class="av-section-title">How Sound Sentinel Pro Compares</h2>
   </div>
@@ -773,7 +747,7 @@
     </table>
   </div>
 
-  <!-- Developer Attribution Card -->
+  <!-- Developer Attribution -->
   <div class="av-developer-card">
     <div class="av-dev-logo">TB</div>
     <div class="av-dev-info">
@@ -785,11 +759,11 @@
     </div>
   </div>
 
-  <!-- Bottom CTA matching Hero Card style -->
+  <!-- Bottom CTA with Live Direct Link -->
   <div class="av-bottom-cta">
     <h3>Start Monitoring Your Space Today</h3>
     <p>Download Sound Sentinel Pro free for Windows. No subscriptions, no registration, and no credit card required.</p>
-    <a href="Sound-Sentinel-Pro-Setup-1.0.0.exe" class="av-btn av-btn-hero-white" download>
+    <a href="https://www.afrovisionmedia.co.za/Downloads/Sound-Sentinel-Pro-Setup-1.0.0.exe" class="av-btn av-btn-hero-white" download>
       Download Sound Sentinel Pro Free
     </a>
   </div>
