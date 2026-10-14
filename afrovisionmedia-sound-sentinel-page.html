@@ -1,636 +1,798 @@
 <!-- ==========================================================================
-     SOUND SENTINEL PRO - EMBEDDABLE LANDING PAGE HTML FOR AFROVISIONMEDIA.CO.ZA
-     Paste this directly into WordPress:
-     1. In WordPress Admin, create a new page: Pages -> Add New
-     2. Set Title to: "Sound Sentinel Pro" (URL will be: afrovisionmedia.co.za/sound-sentinel)
-     3. Add a "Custom HTML" block (or Elementor "HTML" widget)
-     4. Paste all of this code inside. Done!
+     SOUND SENTINEL PRO - EMBEDDABLE LANDING PAGE FOR AFROVISIONMEDIA.CO.ZA
+     Accurately styled to match Afro Vision Media's design language, fonts & colors:
+     - Fonts: "Rubik" for Headings & "Jost" for Body / Subheadings
+     - Colors: Afro Vision Warm Amber-to-Crimson Gradient (#e88504 -> #dc4e19 -> #8c1717)
+     - Style: Clean light aesthetic, rounded cards, black quote accent card & white pill buttons
 ========================================================================== -->
 
-<div id="sound-sentinel-portal">
+<!-- Google Fonts Import: Rubik & Jost (Matching afrovisionmedia.co.za) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<div id="afrovision-sound-sentinel">
   <style>
-    #sound-sentinel-portal {
-      --ssp-bg: #090d16;
-      --ssp-card: #0f1726;
-      --ssp-card-alt: #141e30;
-      --ssp-cyan: #00e5ff;
-      --ssp-cyan-glow: rgba(0, 229, 255, 0.28);
-      --ssp-green: #00e676;
-      --ssp-red: #ff1744;
-      --ssp-amber: #ffb300;
-      --ssp-text: #f0f4fc;
-      --ssp-muted: #94a3b8;
-      --ssp-border: rgba(255, 255, 255, 0.09);
+    /* Scoped container matching afrovisionmedia.co.za layout and styling */
+    #afrovision-sound-sentinel {
+      --av-orange: #e88504;
+      --av-amber: #f59e0b;
+      --av-red: #dc4e19;
+      --av-burgundy: #8c1717;
+      --av-gradient: linear-gradient(115deg, #e88504 0%, #dc4e19 50%, #8c1717 100%);
+      --av-gradient-hover: linear-gradient(115deg, #f29012 0%, #e65824 50%, #9c1d1d 100%);
+      --av-dark: #111827;
+      --av-slate: #1e293b;
+      --av-body: #475569;
+      --av-muted: #64748b;
+      --av-light-bg: #f8fafc;
+      --av-card-border: #e2e8f0;
+      --av-green: #10b981;
       
-      background: var(--ssp-bg);
-      color: var(--ssp-text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: "Jost", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--av-body);
       line-height: 1.6;
-      padding: 40px 20px 80px;
-      border-radius: 16px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-      margin: 20px auto;
-      max-width: 1180px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 16px 80px;
       box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    #afrovision-sound-sentinel * {
+      box-sizing: border-box;
+    }
+
+    #afrovision-sound-sentinel h1,
+    #afrovision-sound-sentinel h2,
+    #afrovision-sound-sentinel h3,
+    #afrovision-sound-sentinel h4 {
+      font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--av-dark);
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+
+    /* Subheader banner title matching Afro Vision Media "Service Hub" header */
+    .av-page-tagline {
+      text-align: center;
+      font-family: "Jost", sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      color: #7e828b;
+      margin: 10px 0 35px;
+      letter-spacing: -0.01em;
+    }
+
+    /* Main Hero Banner Card - EXACT match to afrovisionmedia.co.za Service Hub Card */
+    .av-hero-card {
+      background: var(--av-gradient);
+      border-radius: 20px;
+      padding: clamp(32px, 5vw, 54px);
+      color: #ffffff;
+      box-shadow: 0 16px 40px rgba(220, 78, 25, 0.22);
+      margin-bottom: 30px;
       position: relative;
       overflow: hidden;
     }
 
-    #sound-sentinel-portal * {
-      box-sizing: border-box;
-    }
-
-    /* Ambient glow */
-    #sound-sentinel-portal::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 700px;
-      height: 350px;
-      background: radial-gradient(circle, rgba(0, 229, 255, 0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    /* Header & Hero */
-    .ssp-badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .ssp-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(0, 229, 255, 0.08);
-      border: 1px solid rgba(0, 229, 255, 0.25);
-      color: var(--ssp-cyan);
-      padding: 6px 14px;
-      border-radius: 30px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .ssp-badge.free {
-      background: rgba(0, 230, 118, 0.12);
-      border-color: rgba(0, 230, 118, 0.35);
-      color: var(--ssp-green);
-    }
-
-    .ssp-hero-title {
-      text-align: center;
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
-      font-weight: 900;
-      line-height: 1.2;
-      margin: 0 auto 18px;
-      max-width: 900px;
-      letter-spacing: -0.02em;
+    .av-hero-tag {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(8px);
       color: #ffffff;
-    }
-
-    .ssp-hero-title span {
-      background: linear-gradient(135deg, #ffffff 30%, var(--ssp-cyan) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .ssp-hero-sub {
-      text-align: center;
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
-      color: var(--ssp-muted);
-      max-width: 820px;
-      margin: 0 auto 36px;
-      font-weight: 400;
-    }
-
-    /* Download Action Buttons */
-    .ssp-download-box {
-      background: var(--ssp-card);
-      border: 1px solid var(--ssp-border);
-      border-radius: 14px;
-      padding: 30px;
-      text-align: center;
-      margin: 0 auto 50px;
-      max-width: 760px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
-
-    .ssp-btn-group {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       margin-bottom: 16px;
     }
 
-    .ssp-btn {
+    .av-hero-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      color: var(--av-slate) !important;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin: 0 0 10px;
+      text-transform: uppercase;
+    }
+
+    .av-hero-subtitle {
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-weight: 700;
+      color: var(--av-amber);
+      margin-bottom: 14px;
+    }
+
+    .av-hero-desc {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      color: #ffffff;
+      max-width: 820px;
+      margin-bottom: 30px;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    .av-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    /* Buttons */
+    .av-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 15px 28px;
+      padding: 13px 26px;
       border-radius: 8px;
-      font-weight: 700;
-      font-size: 1.02rem;
+      font-family: "Jost", sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
       text-decoration: none;
       transition: all 0.25s ease;
       cursor: pointer;
     }
 
-    .ssp-btn-primary {
-      background: linear-gradient(135deg, var(--ssp-cyan), #00b0ff);
-      color: #070a10 !important;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      box-shadow: 0 0 25px var(--ssp-cyan-glow);
+    /* White Button inside Hero Card - Matching "Browse Services" */
+    .av-btn-hero-white {
+      background: #ffffff;
+      color: var(--av-burgundy) !important;
+      border: none;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
     }
 
-    .ssp-btn-primary:hover {
+    .av-btn-hero-white:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(0, 229, 255, 0.45);
-      background: linear-gradient(135deg, #33ebff, #29b6f6);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      background: #fafafa;
     }
 
-    .ssp-btn-secondary {
-      background: rgba(255, 255, 255, 0.06);
+    .av-btn-hero-outline {
+      background: rgba(255, 255, 255, 0.15);
       color: #ffffff !important;
-      border: 1px solid var(--ssp-border);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(6px);
     }
 
-    .ssp-btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.25);
+    .av-btn-hero-outline:hover {
+      background: rgba(255, 255, 255, 0.25);
       transform: translateY(-2px);
     }
 
-    .ssp-meta-info {
-      font-size: 0.85rem;
-      color: var(--ssp-muted);
-    }
-
-    /* Live Telemetry Mock Preview */
-    .ssp-preview-box {
-      background: #060910;
-      border: 1px solid var(--ssp-border);
-      border-radius: 12px;
-      overflow: hidden;
-      margin: 0 auto 60px;
-      max-width: 900px;
-    }
-
-    .ssp-preview-bar {
-      background: #0d121e;
-      padding: 10px 18px;
-      border-bottom: 1px solid var(--ssp-border);
+    /* Sub-nav badge row - Matching "Service Catalog / My Cart / My Requests" */
+    .av-pill-row {
       display: flex;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 50px;
+    }
+
+    .av-pill-item {
+      display: inline-flex;
       align-items: center;
-      font-size: 0.8rem;
-      font-family: monospace;
-      color: var(--ssp-muted);
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid var(--av-card-border);
+      border-radius: 8px;
+      padding: 9px 18px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--av-slate);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
     }
 
-    .ssp-preview-body {
-      padding: 24px;
+    .av-pill-free {
+      background: #ecfdf5;
+      color: #047857;
+      border-color: #a7f3d0;
+    }
+
+    /* Two-Column Intro Section - EXACT match to Screenshot 2 */
+    .av-split-intro {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 20px;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 60px;
     }
 
-    @media (max-width: 768px) {
-      .ssp-preview-body {
+    @media (max-width: 900px) {
+      .av-split-intro {
         grid-template-columns: 1fr;
       }
     }
 
-    .ssp-mock-chart {
-      background: #04060a;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
-      padding: 16px;
+    .av-eyebrow {
+      font-family: "Jost", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--av-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .av-eyebrow::before {
+      content: "—";
+      color: var(--av-orange);
+      font-weight: 800;
+    }
+
+    .av-split-title {
+      font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+      line-height: 1.2;
+      color: var(--av-dark);
+      margin: 0 0 16px;
+    }
+
+    .av-split-desc {
+      font-size: 1.1rem;
+      color: var(--av-body);
+      line-height: 1.7;
+    }
+
+    /* Black Quote Card matching screenshot 2 */
+    .av-quote-card {
+      background: #0f141e;
+      border-radius: 16px;
+      padding: 34px 30px;
+      color: #ffffff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      position: relative;
+    }
+
+    .av-quote-text {
+      font-size: 1.15rem;
+      line-height: 1.6;
+      font-weight: 400;
+      margin-bottom: 18px;
+      color: #f1f5f9;
+    }
+
+    .av-quote-author {
+      font-family: "Rubik", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--av-amber);
+    }
+
+    /* Acoustic Live Telemetry Preview in Light Modern Card */
+    .av-telemetry-container {
+      background: #ffffff;
+      border: 1px solid var(--av-card-border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+      margin-bottom: 70px;
+    }
+
+    .av-telemetry-header {
+      display: flex;
       justify-content: space-between;
-      height: 180px;
+      align-items: center;
+      border-bottom: 1px solid var(--av-card-border);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
     }
 
-    .ssp-spectrum {
-      display: flex;
-      align-items: flex-end;
-      gap: 4px;
-      height: 110px;
-    }
-
-    .ssp-bar {
-      flex: 1;
-      background: linear-gradient(to top, var(--ssp-cyan), var(--ssp-green));
-      border-radius: 2px 2px 0 0;
-      opacity: 0.85;
-      animation: sspPulse 1.8s infinite alternate ease-in-out;
-    }
-
-    @keyframes sspPulse {
-      0% { height: 18%; }
-      50% { height: 80%; }
-      100% { height: 35%; }
-    }
-
-    .ssp-alerts-mock {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .ssp-alert-item {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--ssp-border);
-      border-radius: 6px;
-      padding: 10px 14px;
+    .av-telemetry-title {
+      font-family: "Rubik", sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--av-dark);
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 0.85rem;
     }
 
-    .ssp-alert-item.crit { border-left: 3px solid var(--ssp-red); }
-    .ssp-alert-item.high { border-left: 3px solid var(--ssp-amber); }
-    .ssp-alert-item.norm { border-left: 3px solid var(--ssp-cyan); }
-
-    /* Advantages Section */
-    .ssp-section-heading {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .ssp-section-title {
-      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
-    }
-
-    .ssp-section-subtitle {
-      color: var(--ssp-muted);
-      font-size: 1.05rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .ssp-adv-grid {
+    .av-telemetry-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-bottom: 60px;
+      grid-template-columns: 2fr 1.2fr;
+      gap: 24px;
     }
 
-    .ssp-adv-card {
-      background: var(--ssp-card);
-      border: 1px solid var(--ssp-border);
+    @media (max-width: 800px) {
+      .av-telemetry-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .av-spectrum-box {
+      background: #090e18;
       border-radius: 12px;
-      padding: 24px;
-      transition: transform 0.25s, border-color 0.25s;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 220px;
     }
 
-    .ssp-adv-card:hover {
+    .av-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 5px;
+      height: 140px;
+      width: 100%;
+    }
+
+    .av-bar {
+      flex: 1;
+      background: linear-gradient(to top, var(--av-orange), var(--av-red));
+      border-radius: 3px 3px 0 0;
+      animation: avPulse 1.6s infinite alternate ease-in-out;
+    }
+
+    @keyframes avPulse {
+      0% { height: 15%; opacity: 0.7; }
+      50% { height: 85%; opacity: 1; }
+      100% { height: 40%; opacity: 0.85; }
+    }
+
+    .av-events-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .av-event-card {
+      background: var(--av-light-bg);
+      border: 1px solid var(--av-card-border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .av-event-card.crit { border-left: 4px solid var(--av-burgundy); }
+    .av-event-card.warn { border-left: 4px solid var(--av-orange); }
+    .av-event-card.info { border-left: 4px solid #0284c7; }
+
+    /* The 7 Advantages Grid */
+    .av-section-head {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 40px;
+    }
+
+    .av-section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      margin-bottom: 12px;
+    }
+
+    .av-adv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 24px;
+      margin-bottom: 70px;
+    }
+
+    .av-adv-box {
+      background: #ffffff;
+      border: 1px solid var(--av-card-border);
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .av-adv-box:hover {
       transform: translateY(-4px);
-      border-color: rgba(0, 229, 255, 0.35);
-      background: var(--ssp-card-alt);
+      box-shadow: 0 12px 30px rgba(232, 133, 4, 0.12);
+      border-color: #fdba74;
     }
 
-    .ssp-adv-icon {
-      font-size: 1.8rem;
-      margin-bottom: 14px;
-      display: inline-block;
-    }
-
-    .ssp-adv-card h4 {
-      font-size: 1.2rem;
+    .av-adv-num {
+      width: 40px;
+      height: 40px;
+      background: rgba(232, 133, 4, 0.1);
+      color: var(--av-orange);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Rubik", sans-serif;
       font-weight: 700;
-      margin: 0 0 10px;
-      color: #ffffff;
+      font-size: 1.1rem;
+      margin-bottom: 16px;
     }
 
-    .ssp-adv-card p {
-      color: var(--ssp-muted);
-      font-size: 0.94rem;
-      line-height: 1.55;
+    .av-adv-box h4 {
+      font-size: 1.25rem;
+      margin: 0 0 10px;
+    }
+
+    .av-adv-box p {
+      font-size: 0.96rem;
+      line-height: 1.6;
       margin: 0;
     }
 
     /* Comparison Table */
-    .ssp-table-wrap {
+    .av-table-box {
+      background: #ffffff;
+      border: 1px solid var(--av-card-border);
+      border-radius: 14px;
       overflow-x: auto;
-      background: var(--ssp-card);
-      border: 1px solid var(--ssp-border);
-      border-radius: 12px;
-      margin-bottom: 60px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.04);
+      margin-bottom: 70px;
     }
 
-    .ssp-table {
+    .av-table {
       width: 100%;
       border-collapse: collapse;
       text-align: left;
     }
 
-    .ssp-table th, .ssp-table td {
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--ssp-border);
-      font-size: 0.92rem;
+    .av-table th, .av-table td {
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--av-card-border);
+      font-size: 0.95rem;
     }
 
-    .ssp-table th {
-      background: #090e17;
-      color: #fff;
+    .av-table th {
+      background: #f1f5f9;
+      color: var(--av-dark);
       font-weight: 700;
     }
 
-    .ssp-table th.ssp-high, .ssp-table td.ssp-high {
-      background: rgba(0, 229, 255, 0.05);
-      color: #fff;
+    .av-table th.highlight {
+      background: #fff7ed;
+      color: var(--av-orange);
+      border-top: 3px solid var(--av-orange);
+    }
+
+    .av-table td.highlight {
+      background: #fffaf5;
+      font-weight: 600;
+      color: var(--av-dark);
+    }
+
+    .av-tag-check {
+      color: #059669;
+      font-weight: 700;
+    }
+
+    .av-tag-cross {
+      color: #dc2626;
       font-weight: 600;
     }
 
-    .ssp-tag-yes { color: var(--ssp-green); font-weight: 700; }
-    .ssp-tag-no { color: var(--ssp-red); font-weight: 600; }
-
-    /* Developer Attribution */
-    .ssp-dev-card {
-      background: linear-gradient(135deg, #101726, #090e18);
-      border: 1px solid rgba(0, 229, 255, 0.25);
-      border-radius: 14px;
-      padding: 34px;
+    /* Developer Attribution Banner */
+    .av-developer-card {
+      background: #ffffff;
+      border: 2px solid #fed7aa;
+      border-radius: 16px;
+      padding: 36px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 28px;
+      box-shadow: 0 10px 30px rgba(232, 133, 4, 0.08);
+      margin-bottom: 60px;
     }
 
-    .ssp-dev-avatar {
-      width: 80px;
-      height: 80px;
+    .av-dev-logo {
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--ssp-cyan), #0091ea);
+      background: var(--av-gradient);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
-      font-weight: 900;
-      color: #070a10;
-      box-shadow: 0 0 20px var(--ssp-cyan-glow);
+      color: #ffffff;
+      font-family: "Rubik", sans-serif;
+      font-weight: 800;
+      font-size: 2.2rem;
+      box-shadow: 0 8px 24px rgba(220, 78, 25, 0.3);
     }
 
-    .ssp-dev-details {
+    .av-dev-info {
       flex: 1;
-      min-width: 260px;
+      min-width: 280px;
     }
 
-    .ssp-dev-details h3 {
-      font-size: 1.5rem;
+    .av-dev-title {
+      font-size: 1.6rem;
       margin: 0 0 4px;
-      color: #fff;
     }
 
-    .ssp-dev-sub {
-      color: var(--ssp-cyan);
-      font-size: 0.95rem;
+    .av-dev-role {
+      color: var(--av-orange);
       font-weight: 600;
-      margin-bottom: 12px;
+      font-size: 1rem;
+      margin-bottom: 10px;
     }
 
-    .ssp-dev-desc {
-      color: var(--ssp-muted);
-      font-size: 0.95rem;
-      margin: 0;
-      line-height: 1.6;
+    /* Bottom Call-to-Action */
+    .av-bottom-cta {
+      background: var(--av-gradient);
+      border-radius: 20px;
+      padding: 50px 30px;
+      text-align: center;
+      color: #ffffff;
+      box-shadow: 0 16px 40px rgba(220, 78, 25, 0.22);
+    }
+
+    .av-bottom-cta h3 {
+      color: #ffffff !important;
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      margin-bottom: 14px;
+    }
+
+    .av-bottom-cta p {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1.15rem;
+      max-width: 650px;
+      margin: 0 auto 28px;
     }
   </style>
 
-  <!-- Hero Header -->
-  <div class="ssp-badge-row">
-    <span class="ssp-badge free">✓ 100% Free Software</span>
-    <span class="ssp-badge">🛡️ Zero Cloud Privacy</span>
-    <span class="ssp-badge">🧠 521 Sound Classes</span>
-  </div>
+  <!-- Tagline header matching afrovisionmedia.co.za subheaders -->
+  <div class="av-page-tagline">Sound Sentinel Pro</div>
 
-  <h1 class="ssp-hero-title">
-    Turn Your Computer Into An<br>
-    <span>Acoustic Security Radar</span>
-  </h1>
+  <!-- Hero Card (Exact styling of Afro Vision Media Service Hub Card) -->
+  <div class="av-hero-card">
+    <span class="av-hero-tag">Acoustic AI Telemetry • 100% Free Software</span>
+    <h1 class="av-hero-title">Sound Sentinel Pro</h1>
+    <div class="av-hero-subtitle">Edge AI Acoustic Security & Environmental Sound Telemetry</div>
+    <p class="av-hero-desc">
+      Engineered by <strong>Tanyaradzwa Bvute</strong> at <strong>Afro Vision Media</strong>. 
+      Turn any desktop or laptop into an acoustic radar. Monitor smoke alarms, glass fractures, baby cries, knocks, and 521 sound categories on-device — with <strong>complete privacy</strong> and <strong>zero monthly fees</strong>.
+    </p>
 
-  <p class="ssp-hero-sub">
-    <strong>Sound Sentinel Pro</strong> by <strong>Afro Vision Media</strong> is an advanced, on-device AI sound monitor. 
-    Detect smoke alarms, glass fractures, baby cries, knocks, and 521 acoustic anomalies in real-time with <strong>zero cloud exposure</strong> and <strong>zero monthly fees</strong>.
-  </p>
-
-  <!-- Download Box -->
-  <div class="ssp-download-box">
-    <div class="ssp-btn-group">
-      <!-- NOTE: Update the href links to where you host the files (e.g., your site uploads, GitHub release, or Cloudflare) -->
-      <a href="Sound-Sentinel-Pro-Setup-1.0.0.exe" class="ssp-btn ssp-btn-primary" download>
+    <div class="av-hero-actions">
+      <!-- UPDATE HREF TO YOUR DOWNLOAD LINK (e.g., WordPress upload or GitHub Release) -->
+      <a href="Sound-Sentinel-Pro-Setup-1.0.0.exe" class="av-btn av-btn-hero-white" download>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Windows Installer (.exe)
       </a>
-      <a href="Sound-Sentinel-Pro-v1.0.0-Portable.zip" class="ssp-btn ssp-btn-secondary" download>
+      <a href="Sound-Sentinel-Pro-v1.0.0-Portable.zip" class="av-btn av-btn-hero-outline" download>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-        Download Standalone (.zip)
+        Download Portable (.zip)
       </a>
-    </div>
-    <div class="ssp-meta-info">
-      Free for Personal & Commercial Use • Windows 10 & 11 (64-bit) • 100% Offline & Virus-Free
     </div>
   </div>
 
-  <!-- Live Interface Preview -->
-  <div class="ssp-preview-box">
-    <div class="ssp-preview-bar">
-      <span>SOUND SENTINEL PRO // REAL-TIME ACOUSTIC TELEMETRY</span>
-      <span style="color: var(--ssp-green);">● SENSOR ARMED</span>
+  <!-- Pill Row Matching Afro Vision Media Catalog/Cart/Requests Row -->
+  <div class="av-pill-row">
+    <div class="av-pill-item av-pill-free">
+      <span>✓</span> 100% Free Forever
     </div>
-    <div class="ssp-preview-body">
-      <div class="ssp-mock-chart">
-        <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--ssp-muted); font-family:monospace;">
-          <span>FFT SPECTROGRAM [48-BAND]</span>
-          <span style="color:var(--ssp-cyan);">-24.8 dBFS</span>
+    <div class="av-pill-item">
+      <span>🛡️</span> Zero Cloud Latency
+    </div>
+    <div class="av-pill-item">
+      <span>🧠</span> 521 Sound Classes
+    </div>
+    <div class="av-pill-item">
+      <span>🔒</span> 100% Offline Capable
+    </div>
+    <div class="av-pill-item">
+      <span>💻</span> Windows 10 & 11 (64-bit)
+    </div>
+  </div>
+
+  <!-- Two Column Intro Section matching Afro Vision Media "We provide strategic Branding..." -->
+  <div class="av-split-intro">
+    <div>
+      <div class="av-eyebrow">Afro Vision Media Software</div>
+      <h2 class="av-split-title">Real-time acoustic intelligence without compromising your privacy.</h2>
+      <p class="av-split-desc">
+        Unlike commercial smart speakers and security cameras that continuously stream private home audio to remote big-tech cloud servers, Sound Sentinel Pro runs Google's YAMNet neural network entirely within your computer's local memory.
+      </p>
+    </div>
+
+    <!-- Black Quote Card matching Afro Vision Media Design -->
+    <div class="av-quote-card">
+      <div class="av-quote-text">
+        "Security and privacy should never be a trade-off. We build intelligent tools that protect homes and organizations with zero data leaving the device."
+      </div>
+      <div class="av-quote-author">— Afro Vision Media</div>
+    </div>
+  </div>
+
+  <!-- Live Acoustic Telemetry Preview Box -->
+  <div class="av-telemetry-container">
+    <div class="av-telemetry-header">
+      <div class="av-telemetry-title">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e88504" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Sound Sentinel Pro — Live Audio Telemetry & FFT Spectrograph
+      </div>
+      <span style="font-family:'Rubik', sans-serif; font-size:0.85rem; font-weight:700; color:#10b981;">● SENSOR ARMED</span>
+    </div>
+
+    <div class="av-telemetry-grid">
+      <div class="av-spectrum-box">
+        <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:#94a3b8; font-family:monospace;">
+          <span>48-BAND LOGARITHMIC FFT SPECTROGRAM</span>
+          <span style="color:#fdba74;">-24.8 dBFS</span>
         </div>
-        <div class="ssp-spectrum">
-          <div class="ssp-bar" style="height:35%;"></div>
-          <div class="ssp-bar" style="height:60%;"></div>
-          <div class="ssp-bar" style="height:90%;"></div>
-          <div class="ssp-bar" style="height:45%;"></div>
-          <div class="ssp-bar" style="height:70%;"></div>
-          <div class="ssp-bar" style="height:95%;"></div>
-          <div class="ssp-bar" style="height:55%;"></div>
-          <div class="ssp-bar" style="height:40%;"></div>
-          <div class="ssp-bar" style="height:75%;"></div>
-          <div class="ssp-bar" style="height:85%;"></div>
-          <div class="ssp-bar" style="height:50%;"></div>
-          <div class="ssp-bar" style="height:30%;"></div>
+        <div class="av-bars">
+          <div class="av-bar" style="height:30%;"></div>
+          <div class="av-bar" style="height:55%;"></div>
+          <div class="av-bar" style="height:85%;"></div>
+          <div class="av-bar" style="height:40%;"></div>
+          <div class="av-bar" style="height:70%;"></div>
+          <div class="av-bar" style="height:95%;"></div>
+          <div class="av-bar" style="height:60%;"></div>
+          <div class="av-bar" style="height:45%;"></div>
+          <div class="av-bar" style="height:80%;"></div>
+          <div class="av-bar" style="height:70%;"></div>
+          <div class="av-bar" style="height:50%;"></div>
+          <div class="av-bar" style="height:35%;"></div>
         </div>
-        <div style="display:flex; justify-content:space-between; font-size:0.72rem; color:#64748b; font-family:monospace;">
+        <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:#64748b; font-family:monospace;">
           <span>20 Hz</span>
-          <span>1 kHz (Voice)</span>
-          <span>3.1 kHz (Alarm)</span>
+          <span>1 kHz (Speech)</span>
+          <span>3.1 kHz (Alarms)</span>
           <span>8 kHz</span>
         </div>
       </div>
-      <div class="ssp-alerts-mock">
-        <div class="ssp-alert-item crit">
-          <span>🚨</span>
+
+      <div class="av-events-list">
+        <div class="av-event-card crit">
+          <span style="font-size:1.4rem;">🚨</span>
           <div>
-            <strong>Smoke Alarm</strong>
-            <div style="color:var(--ssp-muted); font-size:0.75rem;">98.4% • ISO T3 Siren</div>
+            <div style="font-family:'Rubik', sans-serif; font-weight:700; font-size:0.95rem; color:var(--av-dark);">Smoke Detector / Siren</div>
+            <div style="font-size:0.8rem; color:var(--av-muted);">98.4% Confidence • ISO T3 Pattern</div>
           </div>
         </div>
-        <div class="ssp-alert-item high">
-          <span>💥</span>
+        <div class="av-event-card warn">
+          <span style="font-size:1.4rem;">💥</span>
           <div>
-            <strong>Glass Break</strong>
-            <div style="color:var(--ssp-muted); font-size:0.75rem;">91.2% • High Frequency</div>
+            <div style="font-family:'Rubik', sans-serif; font-weight:700; font-size:0.95rem; color:var(--av-dark);">Glass Fracture / Break</div>
+            <div style="font-size:0.8rem; color:var(--av-muted);">91.2% Confidence • High-Frequency Transient</div>
           </div>
         </div>
-        <div class="ssp-alert-item norm">
-          <span>👶</span>
+        <div class="av-event-card info">
+          <span style="font-size:1.4rem;">👶</span>
           <div>
-            <strong>Infant Cry</strong>
-            <div style="color:var(--ssp-muted); font-size:0.75rem;">88.6% • Harmonic Wails</div>
+            <div style="font-family:'Rubik', sans-serif; font-weight:700; font-size:0.95rem; color:var(--av-dark);">Infant / Baby Crying</div>
+            <div style="font-size:0.8rem; color:var(--av-muted);">88.6% Confidence • Harmonic Modulation</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Advantages Section -->
-  <div class="ssp-section-heading">
-    <div style="color:var(--ssp-cyan); font-weight:700; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">The Competitive Edge</div>
-    <h2 class="ssp-section-title">The 7 Unmatched Advantages</h2>
-    <p class="ssp-section-subtitle">Why Sound Sentinel Pro outclasses expensive commercial cloud security hardware.</p>
+  <!-- The 7 Advantages Section -->
+  <div class="av-section-head">
+    <div class="av-eyebrow" style="justify-content:center;">Key Value Proposition</div>
+    <h2 class="av-section-title">The 7 Unmatched Advantages</h2>
+    <p style="font-size:1.1rem; color:var(--av-body);">Why users choose Sound Sentinel Pro over expensive commercial subscriptions.</p>
   </div>
 
-  <div class="ssp-adv-grid">
-    <div class="ssp-adv-card">
-      <div class="ssp-adv-icon">🔒</div>
-      <h4>1. 100% On-Device Edge Privacy</h4>
-      <p>Microphone audio never leaves your machine. Neural inference runs in local computer memory. Zero recordings sent to external cloud servers or big tech.</p>
+  <div class="av-adv-grid">
+    <div class="av-adv-box">
+      <div class="av-adv-num">01</div>
+      <h4>100% On-Device Edge Privacy</h4>
+      <p>Microphone audio never leaves your machine. Neural network inference executes in local memory with zero recordings sent to external cloud servers.</p>
     </div>
 
-    <div class="ssp-adv-card">
-      <div class="ssp-adv-icon">💸</div>
-      <h4>2. Free Forever (Zero Subscriptions)</h4>
-      <p>Competitors charge $10 to $25 per month for sound detection. Sound Sentinel Pro is 100% free software with zero monthly fees, credit cards, or locked paywalls.</p>
+    <div class="av-adv-box">
+      <div class="av-adv-num">02</div>
+      <h4>100% Free Software (No Monthly Fees)</h4>
+      <p>Commercial alarm platforms charge $10 to $25 every single month. Sound Sentinel Pro is completely free forever with no hidden paywalls.</p>
     </div>
 
-    <div class="ssp-adv-card">
-      <div class="ssp-adv-icon">🧠</div>
-      <h4>3. Massive 521 Sound Categories</h4>
-      <p>Recognizes 521 acoustic classes with Google YAMNet: smoke detectors, glass fractures, screams, baby cries, dog barks, footsteps, knocks, and water leaks.</p>
+    <div class="av-adv-box">
+      <div class="av-adv-num">03</div>
+      <h4>Massive 521 Sound Categories</h4>
+      <p>Recognizes 521 acoustic classes: smoke alarms, glass breaks, screams, dog barks, footsteps, door knocks, and running water hazards.</p>
     </div>
 
-    <div class="ssp-adv-card">
-      <div class="ssp-adv-icon">⚡</div>
-      <h4>4. Sub-15ms Zero Latency</h4>
-      <p>Without sending audio across the internet, detections occur in milliseconds, alerting you the moment a hazard occurs.</p>
+    <div class="av-adv-box">
+      <div class="av-adv-num">04</div>
+      <h4>Sub-15ms Zero Latency</h4>
+      <p>Because audio is processed locally, detections trigger instantly in milliseconds without network delays.</p>
     </div>
 
-    <div class="ssp-adv-card">
-      <div class="ssp-adv-icon">🌐</div>
-      <h4>5. 100% Offline Capability</h4>
-      <p>Works during internet blackouts or in remote off-grid cabins, warehouses, and secure facilities with zero Wi-Fi required.</p>
+    <div class="av-adv-box">
+      <div class="av-adv-num">05</div>
+      <h4>100% Offline Capability</h4>
+      <p>Continues to protect your property during power or internet outages, and operates flawlessly in remote, off-grid locations.</p>
     </div>
 
-    <div class="ssp-adv-card">
-      <div class="ssp-adv-icon">📊</div>
-      <h4>6. Real-Time Telemetry & FFT</h4>
-      <p>View your live acoustic environment with an analog Signal Oscilloscope, 48-band Logarithmic FFT Spectrogram, and dBFS meters.</p>
+    <div class="av-adv-box">
+      <div class="av-adv-num">06</div>
+      <h4>Live Scientific FFT Spectrogram</h4>
+      <p>View your acoustic frequency response in real time with an analog Signal Oscilloscope and 48-band Logarithmic FFT Spectrogram.</p>
     </div>
 
-    <div class="ssp-adv-card">
-      <div class="ssp-adv-icon">🧪</div>
-      <h4>7. Calibration Lab & CSV Exports</h4>
-      <p>Includes built-in synthetic test sound generators to calibrate your microphone, plus searchable incident logging with CSV/JSON exports.</p>
+    <div class="av-adv-box">
+      <div class="av-adv-num">07</div>
+      <h4>Calibration Lab & Forensic Logs</h4>
+      <p>Includes built-in synthetic test sound generators to tune microphone sensitivity, plus complete incident logging with CSV and JSON exports.</p>
     </div>
   </div>
 
-  <!-- Comparison Table -->
-  <div class="ssp-section-heading">
-    <h2 class="ssp-section-title">Sound Sentinel Pro vs. The Competition</h2>
+  <!-- Comparison Matrix Table -->
+  <div class="av-section-head">
+    <h2 class="av-section-title">How Sound Sentinel Pro Compares</h2>
   </div>
 
-  <div class="ssp-table-wrap">
-    <table class="ssp-table">
+  <div class="av-table-box">
+    <table class="av-table">
       <thead>
         <tr>
           <th>Capability</th>
-          <th class="ssp-high">Sound Sentinel Pro</th>
+          <th class="highlight">Sound Sentinel Pro</th>
           <th>Ring / Alexa Guard</th>
           <th>Google Nest Aware</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Monthly Subscription</td>
-          <td class="ssp-high"><span class="ssp-tag-yes">FREE Forever ($0)</span></td>
-          <td>$4.99 – $20/month</td>
-          <td>$8 – $15/month</td>
+          <td>Monthly Cost</td>
+          <td class="highlight"><span class="av-tag-check">100% Free Forever ($0)</span></td>
+          <td>$4.99 – $20 / month</td>
+          <td>$8 – $15 / month</td>
         </tr>
         <tr>
-          <td>Audio Privacy</td>
-          <td class="ssp-high"><span class="ssp-tag-yes">100% Local / Zero Cloud</span></td>
-          <td><span class="ssp-tag-no">Sent to Amazon Cloud</span></td>
-          <td><span class="ssp-tag-no">Sent to Google Cloud</span></td>
+          <td>Microphone Privacy</td>
+          <td class="highlight"><span class="av-tag-check">100% Local / Zero Cloud</span></td>
+          <td><span class="av-tag-cross">Sent to Amazon Cloud</span></td>
+          <td><span class="av-tag-cross">Sent to Google Cloud</span></td>
         </tr>
         <tr>
-          <td>Sound Categories</td>
-          <td class="ssp-high"><span class="ssp-tag-yes">521 Sound Classes</span></td>
+          <td>Recognized Sound Classes</td>
+          <td class="highlight"><span class="av-tag-check">521 Sound Categories</span></td>
           <td>2 (Smoke, Glass Break)</td>
           <td>2 (Smoke, Glass Break)</td>
         </tr>
         <tr>
-          <td>Works Offline</td>
-          <td class="ssp-high"><span class="ssp-tag-yes">Yes (Fully Offline)</span></td>
-          <td><span class="ssp-tag-no">No (Requires Cloud)</span></td>
-          <td><span class="ssp-tag-no">No (Requires Cloud)</span></td>
+          <td>Works Offline / No Internet</td>
+          <td class="highlight"><span class="av-tag-check">Yes (Fully Offline)</span></td>
+          <td><span class="av-tag-cross">No (Requires Cloud)</span></td>
+          <td><span class="av-tag-cross">No (Requires Cloud)</span></td>
         </tr>
         <tr>
           <td>Live FFT Spectrogram</td>
-          <td class="ssp-high"><span class="ssp-tag-yes">Yes (Built-in)</span></td>
-          <td><span class="ssp-tag-no">No</span></td>
-          <td><span class="ssp-tag-no">No</span></td>
+          <td class="highlight"><span class="av-tag-check">Yes (Dual-Mode Visualizer)</span></td>
+          <td><span class="av-tag-cross">No</span></td>
+          <td><span class="av-tag-cross">No</span></td>
         </tr>
         <tr>
-          <td>Data Audit Logs</td>
-          <td class="ssp-high"><span class="ssp-tag-yes">CSV & JSON Telemetry</span></td>
-          <td><span class="ssp-tag-no">No</span></td>
-          <td><span class="ssp-tag-no">No</span></td>
+          <td>Incident Audit Export</td>
+          <td class="highlight"><span class="av-tag-check">Yes (CSV & JSON Telemetry)</span></td>
+          <td><span class="av-tag-cross">No</span></td>
+          <td><span class="av-tag-cross">No</span></td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- Developer Card -->
-  <div class="ssp-dev-card">
-    <div class="ssp-dev-avatar">TB</div>
-    <div class="ssp-dev-details">
-      <h3>Tanyaradzwa Bvute</h3>
-      <div class="ssp-dev-sub">Afro Vision Media • Lead Architect & Developer</div>
-      <p class="ssp-dev-desc">
-        Specializing in enterprise full-stack development, modern business applications, AI-assisted telemetry, and scalable digital platforms. Sound Sentinel Pro was engineered by Afro Vision Media to deliver high-grade acoustic security intelligence to homes and organizations with complete privacy and zero subscription fees.
+  <!-- Developer Attribution Card -->
+  <div class="av-developer-card">
+    <div class="av-dev-logo">TB</div>
+    <div class="av-dev-info">
+      <h3 class="av-dev-title">Tanyaradzwa Bvute</h3>
+      <div class="av-dev-role">Afro Vision Media • Lead Architect & Developer</div>
+      <p style="margin:0; font-size:1rem; line-height:1.6; color:var(--av-body);">
+        Full-stack engineer specializing in enterprise systems, business applications, AI-assisted telemetry, and digital media platforms. Sound Sentinel Pro was designed by Afro Vision Media to deliver enterprise-grade acoustic security intelligence with zero subscription fees and complete edge privacy.
       </p>
     </div>
   </div>
 
-  <!-- Bottom CTA -->
-  <div style="text-align: center; margin-top: 50px;">
-    <h3 style="font-size: 1.8rem; margin-bottom: 16px; color:#fff;">Ready to Secure Your Environment?</h3>
-    <a href="Sound-Sentinel-Pro-Setup-1.0.0.exe" class="ssp-btn ssp-btn-primary" download>
+  <!-- Bottom CTA matching Hero Card style -->
+  <div class="av-bottom-cta">
+    <h3>Start Monitoring Your Space Today</h3>
+    <p>Download Sound Sentinel Pro free for Windows. No subscriptions, no registration, and no credit card required.</p>
+    <a href="Sound-Sentinel-Pro-Setup-1.0.0.exe" class="av-btn av-btn-hero-white" download>
       Download Sound Sentinel Pro Free
     </a>
   </div>
 
 </div>
-<!-- =================== END SOUND SENTINEL PRO EMBED =================== -->
+<!-- =================== END AFRO VISION MEDIA EMBED =================== -->
