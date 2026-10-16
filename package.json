@@ -10,7 +10,10 @@
     "test": "node scripts/test_app.js",
     "dist": "electron-builder --win nsis",
     "dist:portable": "electron-builder --win portable",
-    "dist:all": "electron-builder --win"
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux",
+    "dist:all": "electron-builder -mwl"
   },
   "keywords": [
     "acoustic-security",
@@ -41,6 +44,25 @@
         "portable"
       ],
       "icon": "src/assets/icon.ico"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.security",
+      "icon": "src/assets/icon.png",
+      "artifactName": "Sound-Sentinel-Pro-${version}-mac.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "tar.gz"
+      ],
+      "category": "Utility",
+      "icon": "src/assets/icon.png",
+      "artifactName": "Sound-Sentinel-Pro-${version}-linux-${arch}.${ext}"
     },
     "nsis": {
       "oneClick": false,
