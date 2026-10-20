@@ -80,7 +80,7 @@ class SoundSentinelMobileApp {
       dbMeterBar: document.getElementById('db-meter-bar'),
       btnArm: document.getElementById('btn-arm'),
       armText: document.getElementById('arm-text'),
-      topClassEmoji: document.getElementById('top-class-emoji'),
+      topClassIcon: document.getElementById('top-class-icon'),
       topClassName: document.getElementById('top-class-name'),
       topClassCategory: document.getElementById('top-class-category'),
       topClassScore: document.getElementById('top-class-score'),
@@ -283,9 +283,24 @@ class SoundSentinelMobileApp {
     }
   }
 
+  getCategorySvg(category, alertLevel) {
+    if (alertLevel === 'critical' || category === 'Emergency & Safety') {
+      return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`;
+    }
+    if (category === 'Security & Access') {
+      return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`;
+    }
+    if (category === 'Baby & Care') {
+      return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`;
+    }
+    return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e88504" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10v4M6 6v12M10 3v18M14 8v8M18 5v14M22 10v4"/></svg>`;
+  }
+
   handleDetection(item) {
     // Update Top Spotlight Card
-    this.dom.topClassEmoji.textContent = item.emoji;
+    if (this.dom.topClassIcon) {
+      this.dom.topClassIcon.innerHTML = this.getCategorySvg(item.category, item.alertLevel);
+    }
     this.dom.topClassName.textContent = item.name;
     this.dom.topClassCategory.textContent = item.category;
     this.dom.topClassScore.textContent = `${(item.confidence * 100).toFixed(0)}% Match`;
@@ -324,11 +339,12 @@ class SoundSentinelMobileApp {
         const timeStr = ev.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
         const waUrl = this.dispatcher.getWhatsAppShareUrl(ev.item, ev.node);
         const alertClass = ev.item.alertLevel === 'critical' ? 'critical' : ev.item.alertLevel === 'high' ? 'high' : 'normal';
+        const iconSvg = this.getCategorySvg(ev.item.category, ev.item.alertLevel);
 
         return `
         <div class="event-card ${alertClass}">
           <div class="event-left">
-            <span class="event-emoji">${ev.item.emoji}</span>
+            <span class="event-emoji" style="display:flex; align-items:center; justify-content:center;">${iconSvg}</span>
             <div class="event-details">
               <div class="event-name">${ev.item.name}</div>
               <div class="event-meta">${timeStr} &bull; ${ev.item.category}</div>
@@ -336,7 +352,9 @@ class SoundSentinelMobileApp {
           </div>
           <div class="event-right">
             <span class="event-score">${(ev.item.confidence * 100).toFixed(0)}%</span>
-            <a href="${waUrl}" target="_blank" class="event-wa-btn" title="Send WhatsApp Alert">💬</a>
+            <a href="${waUrl}" target="_blank" class="event-wa-btn" title="Send WhatsApp Alert">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffffff"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            </a>
           </div>
         </div>
       `;
