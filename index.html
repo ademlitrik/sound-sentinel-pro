@@ -17,7 +17,7 @@
   <!-- Typography: Rubik & Jost -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- TensorFlow.js for Mobile Edge Neural Classification -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
@@ -36,13 +36,21 @@
         <div style="font-size:0.7rem; color:var(--text-muted); line-height:1;">Afro Vision Media PTY (Ltd)</div>
       </div>
     </div>
-    <button id="btn-settings" class="btn-icon" title="Settings" aria-label="Settings">⚙️</button>
+    <button id="btn-settings" class="btn-icon" title="Settings" aria-label="Settings">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
   </header>
 
   <!-- Operating Mode Switcher -->
   <nav class="mode-bar">
-    <button id="tab-sensor" class="mode-tab active">🎙️ Sensor Pod Node</button>
-    <button id="tab-companion" class="mode-tab">📱 Pocket Monitor</button>
+    <button id="tab-sensor" class="mode-tab active">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px; margin-right:4px;"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      Sensor Pod Node
+    </button>
+    <button id="tab-companion" class="mode-tab">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px; margin-right:4px;"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      Pocket Monitor
+    </button>
   </nav>
 
   <!-- Status Bar -->
@@ -77,14 +85,16 @@
 
       <!-- Arm / Disarm Button -->
       <button id="btn-arm" class="btn-arm-main">
-        <span>🛡️</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         <span id="arm-text">ARM SENSOR POD</span>
       </button>
     </div>
 
     <!-- Top Acoustic Match Spotlight -->
     <div class="spotlight-card">
-      <div id="top-class-emoji" class="spotlight-emoji">👂</div>
+      <div id="top-class-icon" class="spotlight-emoji">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--av-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10v4M6 6v12M10 3v18M14 8v8M18 5v14M22 10v4"/></svg>
+      </div>
       <div class="spotlight-info">
         <div id="top-class-name" class="spotlight-name">Acoustic Sentry Standby</div>
         <div id="top-class-category" class="spotlight-cat">521 AudioSet YAMNet Classes</div>
@@ -114,26 +124,29 @@
   <!-- VIEW 2: POCKET MONITOR (Companion Remote) -->
   <section id="view-companion" class="view-container">
     <div class="companion-card">
-      <div class="companion-status-icon">🛡️</div>
+      <div class="companion-status-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--av-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
       <h2 style="font-size:1.35rem; margin-bottom:4px;">Pocket Sentry Active</h2>
       <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.5;">
         Carry your phone with you. When acoustic pods detect smoke alarms, glass breaks, or screams, instant push alerts appear here.
       </p>
 
       <button id="panic-btn" class="btn-panic">
-        🚨 TRIGGER PANIC ALARM
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px; margin-right:6px;"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        TRIGGER EMERGENCY ALARM
       </button>
 
       <button id="quick-whatsapp-btn" class="btn-whatsapp-sos">
-        <span>💬</span>
-        <span>SOS Alert to Security / WhatsApp</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        <span>Instant Alert to WhatsApp Bot</span>
       </button>
     </div>
 
     <div class="sensor-card">
       <div class="node-tag">Edge Privacy Guarantee</div>
       <div style="font-size:0.86rem; color:var(--text-muted); line-height:1.6;">
-        🔒 <strong>Zero Audio Leaves Your Device:</strong> All sound processing happens natively on your mobile phone's CPU/NPU. Only lightweight 1 KB JSON alerts are dispatched.
+        <strong>Zero Audio Leaves Your Device:</strong> All sound processing executes natively on your phone's processor. Only lightweight 1 KB telemetry alert packets are dispatched.
       </div>
     </div>
   </section>
