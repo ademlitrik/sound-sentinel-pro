@@ -1,0 +1,25 @@
+{
+  "name": "Sound Sentinel Pro — Edge Acoustic Security",
+  "short_name": "SoundSentinel",
+  "description": "On-Device Acoustic Intelligence & Sound Telemetry by Afro Vision Media PTY (Ltd)",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0d1117",
+  "theme_color": "#e88504",
+  "categories": ["security", "utilities", "productivity"],
+  "icons": [
+    {
+      "src": "assets/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/afrovision_logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
