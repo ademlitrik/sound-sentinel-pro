@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Sound Sentinel Pro — Mobile Acoustic Sentry</title>
+  
+  <!-- Web App Manifest for PWA & Mobile Install -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#090c10">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SoundSentinel">
+  <link rel="apple-touch-icon" href="assets/icon.png">
+  <link rel="icon" type="image/png" href="assets/icon.png">
+
+  <!-- Typography: Rubik & Jost -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- TensorFlow.js for Mobile Edge Neural Classification -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+
+  <!-- App Stylesheet -->
+  <link rel="stylesheet" href="css/mobile.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="brand-wrap">
+      <img src="assets/afrovision_logo.png" alt="Afro Vision Media" class="brand-logo" onerror="this.src='assets/icon.png'">
+      <div>
+        <div class="brand-title">Sound Sentinel Pro</div>
+        <div style="font-size:0.7rem; color:var(--text-muted); line-height:1;">Afro Vision Media PTY (Ltd)</div>
+      </div>
+    </div>
+    <button id="btn-settings" class="btn-icon" title="Settings" aria-label="Settings">⚙️</button>
+  </header>
+
+  <!-- Operating Mode Switcher -->
+  <nav class="mode-bar">
+    <button id="tab-sensor" class="mode-tab active">🎙️ Sensor Pod Node</button>
+    <button id="tab-companion" class="mode-tab">📱 Pocket Monitor</button>
+  </nav>
+
+  <!-- Status Bar -->
+  <div class="status-pill-wrap">
+    <div id="status-pill" class="status-pill ready">
+      <div class="status-dot"></div>
+      <div id="status-text">Loading Edge Neural Model...</div>
+    </div>
+  </div>
+
+  <!-- VIEW 1: SENSOR POD NODE (Listening Station) -->
+  <main id="view-sensor" class="view-container active">
+    <!-- Sensor Pod Card -->
+    <div class="sensor-card">
+      <div class="node-info-row">
+        <div>
+          <div class="node-tag">Active Acoustic Sensor</div>
+          <div id="node-name-display" class="node-name">Mobile-Node-01</div>
+        </div>
+        <div id="db-value" style="font-weight:700; color:var(--av-amber); font-size:1.1rem;">-60 dB</div>
+      </div>
+
+      <div class="db-meter-section">
+        <div class="db-label-row">
+          <span>Ambient Decibel Level</span>
+          <span>RMS Telemetry</span>
+        </div>
+        <div class="db-meter-track">
+          <div id="db-meter-bar" class="db-meter-fill"></div>
+        </div>
+      </div>
+
+      <!-- Arm / Disarm Button -->
+      <button id="btn-arm" class="btn-arm-main">
+        <span>🛡️</span>
+        <span id="arm-text">ARM SENSOR POD</span>
+      </button>
+    </div>
+
+    <!-- Top Acoustic Match Spotlight -->
+    <div class="spotlight-card">
+      <div id="top-class-emoji" class="spotlight-emoji">👂</div>
+      <div class="spotlight-info">
+        <div id="top-class-name" class="spotlight-name">Acoustic Sentry Standby</div>
+        <div id="top-class-category" class="spotlight-cat">521 AudioSet YAMNet Classes</div>
+      </div>
+      <div id="top-class-score" class="spotlight-score">--</div>
+    </div>
+
+    <!-- Real-time Event Feed -->
+    <div class="section-header">
+      <div class="section-title">
+        <span>Incident Timeline</span>
+        <span id="event-count-badge" class="count-badge">0</span>
+      </div>
+      <div class="section-actions">
+        <button id="btn-export-csv" class="btn-action-small">Export CSV</button>
+        <button id="btn-clear-events" class="btn-action-small">Clear</button>
+      </div>
+    </div>
+
+    <div id="empty-state" class="empty-state">
+      No acoustic incidents recorded. Arm the sensor to begin monitoring your environment.
+    </div>
+
+    <div id="event-list" class="event-list"></div>
+  </main>
+
+  <!-- VIEW 2: POCKET MONITOR (Companion Remote) -->
+  <section id="view-companion" class="view-container">
+    <div class="companion-card">
+      <div class="companion-status-icon">🛡️</div>
+      <h2 style="font-size:1.35rem; margin-bottom:4px;">Pocket Sentry Active</h2>
+      <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.5;">
+        Carry your phone with you. When acoustic pods detect smoke alarms, glass breaks, or screams, instant push alerts appear here.
+      </p>
+
+      <button id="panic-btn" class="btn-panic">
+        🚨 TRIGGER PANIC ALARM
+      </button>
+
+      <button id="quick-whatsapp-btn" class="btn-whatsapp-sos">
+        <span>💬</span>
+        <span>SOS Alert to Security / WhatsApp</span>
+      </button>
+    </div>
+
+    <div class="sensor-card">
+      <div class="node-tag">Edge Privacy Guarantee</div>
+      <div style="font-size:0.86rem; color:var(--text-muted); line-height:1.6;">
+        🔒 <strong>Zero Audio Leaves Your Device:</strong> All sound processing happens natively on your mobile phone's CPU/NPU. Only lightweight 1 KB JSON alerts are dispatched.
+      </div>
+    </div>
+  </section>
+
+  <!-- Settings Bottom Sheet Modal -->
+  <div id="modal-settings" class="modal-overlay">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <h3 class="modal-title">Settings &amp; Dispatch</h3>
+        <button id="btn-close-settings" class="btn-icon">✕</button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Sensor Node Name</label>
+        <input type="text" id="input-node-name" class="form-input" placeholder="e.g. Front Door Pod, Living Room">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Cloud Webhook URL (JSON Alert Dispatch)</label>
+        <input type="url" id="input-webhook" class="form-input" placeholder="https://your-api.com/webhook or Zapier">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">WhatsApp Alert Recipient (International Format)</label>
+        <input type="tel" id="input-whatsapp" class="form-input" placeholder="e.g. 2782516591">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Telegram Bot Token (Optional)</label>
+        <input type="text" id="input-tg-token" class="form-input" placeholder="123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Telegram Chat ID (Optional)</label>
+        <input type="text" id="input-tg-chat" class="form-input" placeholder="e.g. -100123456789">
+      </div>
+
+      <div class="form-group">
+        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+          <label class="form-label">Detection Sensitivity</label>
+          <span id="val-sens" style="font-size:0.84rem; font-weight:700; color:var(--av-orange);">35%</span>
+        </div>
+        <input type="range" id="slider-sens" min="15" max="85" value="35" style="width:100%; accent-color:var(--av-orange);">
+      </div>
+
+      <div class="toggle-row">
+        <span>Audible Siren / Chime</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="toggle-sound" checked>
+          <span class="slider-switch"></span>
+        </label>
+      </div>
+
+      <div class="toggle-row">
+        <span>Haptic Vibration Feedback</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="toggle-vibrate" checked>
+          <span class="slider-switch"></span>
+        </label>
+      </div>
+
+      <button id="btn-save-settings" class="btn-save">Save Configuration</button>
+
+      <div style="text-align:center; font-size:0.75rem; color:var(--text-muted); margin-top:10px;">
+        Sound Sentinel Pro Mobile v1.0.0 &bull; Afro Vision Media PTY (Ltd)<br>
+        Lead Architect: Tanyaradzwa Bvute
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/classes.js"></script>
+  <script src="js/mobile-audio.js"></script>
+  <script src="js/mobile-classifier.js"></script>
+  <script src="js/mobile-dispatcher.js"></script>
+  <script src="js/mobile-app.js"></script>
+</body>
+</html>

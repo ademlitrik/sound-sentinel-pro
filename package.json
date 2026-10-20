@@ -7,7 +7,8 @@
   "scripts": {
     "start": "electron .",
     "dev": "electron . --enable-logging",
-    "test": "node scripts/test_app.js",
+    "test": "node scripts/test_app.js && node scripts/test_mobile_app.js",
+    "test:mobile": "node scripts/test_mobile_app.js",
     "dist": "electron-builder --win nsis",
     "dist:portable": "electron-builder --win portable",
     "dist:win": "electron-builder --win",
