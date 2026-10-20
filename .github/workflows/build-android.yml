@@ -5,6 +5,8 @@ on:
     paths:
       - 'mobile/**'
       - '.github/workflows/build-android.yml'
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 permissions:
@@ -57,3 +59,10 @@ jobs:
           name: Sound-Sentinel-Pro-Android-APK
           path: mobile/Sound-Sentinel-Pro-Mobile.apk
           if-no-files-found: error
+
+      - name: Publish Android APK to GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: mobile/Sound-Sentinel-Pro-Mobile.apk
+
