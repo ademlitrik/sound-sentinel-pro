@@ -6,6 +6,9 @@ on:
       - 'v*'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build on ${{ matrix.os }}
@@ -34,28 +37,41 @@ jobs:
       # Build Windows Executable (.exe)
       - name: Build Windows Installer & Portable (.exe)
         if: matrix.os == 'windows-latest'
-        run: npm run dist:win
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx electron-builder --win --publish never
 
       # Build macOS Disk Image (.dmg) and Zip
       - name: Build macOS DMG (.dmg)
         if: matrix.os == 'macos-latest'
-        run: npm run dist:mac
+        run: npx electron-builder --mac --publish never
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CSC_IDENTITY_AUTO_DISCOVERY: false
 
       # Build Linux AppImage, DEB and ARM
       - name: Build Linux (.AppImage, .deb)
         if: matrix.os == 'ubuntu-latest'
-        run: npm run dist:linux
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx electron-builder --linux --publish never
 
-      - name: Upload Artifacts
+      - name: Upload Artifacts to Job
         uses: actions/upload-artifact@v4
         with:
           name: Sound-Sentinel-Pro-${{ matrix.os }}
-          path: dist/*.*
+          path: |
+            dist/*.exe
+            dist/*.zip
+            dist/*.dmg
+            dist/*.AppImage
+            dist/*.deb
           if-no-files-found: warn
+
+      - name: Publish to GitHub Releases
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            dist/*.exe
+            dist/*.zip
+            dist/*.dmg
+            dist/*.AppImage
+            dist/*.deb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
