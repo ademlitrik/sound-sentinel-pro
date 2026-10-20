@@ -52,7 +52,8 @@
       ],
       "category": "public.app-category.security",
       "icon": "src/assets/icon.png",
-      "artifactName": "Sound-Sentinel-Pro-${version}-mac.${ext}"
+      "artifactName": "Sound-Sentinel-Pro-${version}-mac.${ext}",
+      "identity": null
     },
     "linux": {
       "target": [
